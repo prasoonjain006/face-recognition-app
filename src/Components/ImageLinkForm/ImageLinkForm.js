@@ -4,7 +4,7 @@ import './ImageLinkForm.css';
 const imageLinkForm=()=>{
     return(
         <div>
-            <p className='f3'>
+            <p className='f3 b light-green'>
                 {'This will detect faces in your picture. Give it a try !!'}
             </p>
             <div className=" shadow-5 pa3 form center">
