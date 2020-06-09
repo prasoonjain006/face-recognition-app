@@ -11,7 +11,6 @@ const Logo=()=>{
                     <img className="pa3"  src={logo1} width="80px" alt='logo'></img> 
                 </div>
             </Tilt>
-
         </div>
     )
 }

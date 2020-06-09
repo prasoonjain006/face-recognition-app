@@ -3,6 +3,7 @@ import './App.css';
 import Navigation from './Components/Navigation/Navigation';
 import Logo from './Components/Logo/Logo';
 import ImageLinkForm from './Components/ImageLinkForm/ImageLinkForm';
+import SignIn from './Components/SignIn/SignIn';
 import FaceRecognition from './Components/FaceRecognition/FaceRecognition';
 import Rank from './Components/Rank/Rank';
 import Particles from 'react-particles-js';
@@ -35,13 +36,14 @@ const ParticlesOptions={
 class App extends Component {
   constructor(){
     super();
+   
     this.state={
       input:"",
       imageUrl:"",
       box:{},
     }
   }
-
+  
   calculateFaceLocation =(data)=>{
     const claFace = data.outputs[0].data.regions[0].region_info.bounding_box;
     const image = document.getElementById('inputImage');
@@ -68,16 +70,17 @@ class App extends Component {
     app.models.predict(Clarifai.FACE_DETECT_MODEL,this.state.input)
     .then(response => this.displayFaceBox(this.calculateFaceLocation(response)))
       .catch(err =>console.log(err))
-  
   }
   render(){
     return (
       <div className="App">
+      
         <Particles className="particles"
           params={ParticlesOptions} 
         />
         <Navigation/>
         <Logo/>
+        <SignIn/>
         <Rank/>
         <ImageLinkForm  onSubmit={this.onSubmit}  onInputChange={this.onInputChange}  />
         <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl}/> 
