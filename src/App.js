@@ -41,6 +41,7 @@ class App extends Component {
       input:"",
       imageUrl:"",
       box:{},
+      route: 'signIn',
     }
   }
   
@@ -71,19 +72,28 @@ class App extends Component {
     .then(response => this.displayFaceBox(this.calculateFaceLocation(response)))
       .catch(err =>console.log(err))
   }
+  onRouteChange=(route)=>{
+    this.setState({route:route})
+  }
+  
+
   render(){
     return (
       <div className="App">
-      
         <Particles className="particles"
           params={ParticlesOptions} 
         />
-        <Navigation/>
-        <Logo/>
-        <SignIn/>
-        <Rank/>
-        <ImageLinkForm  onSubmit={this.onSubmit}  onInputChange={this.onInputChange}  />
-        <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl}/> 
+        
+        {this.state.route === 'signIn'
+        ?  <SignIn onRouteChange={this.onRouteChange}/>
+        :  <div>
+            <Navigation onRouteChange={this.onRouteChange} />
+            <Logo/>
+            <Rank/>
+            <ImageLinkForm  onSubmit={this.onSubmit}  onInputChange={this.onInputChange}  />
+            <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl}/> 
+          </div>
+        }
       </div>
     );
   }
