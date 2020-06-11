@@ -53,6 +53,7 @@ class App extends Component {
   }
 
   loadUser=(data)=>{
+    // console.log(data);
     this.setState({data: {
         email:data.email,
         id:data.id,
@@ -92,9 +93,21 @@ class App extends Component {
   onSubmit=()=>{
     this.setState({imageUrl:this.state.input})
     app.models.predict(Clarifai.FACE_DETECT_MODEL,this.state.input)
-    .then(response => this.displayFaceBox(this.calculateFaceLocation(response)))
-      .catch(err =>console.log(err))
-  }
+    .then(response =>{
+      if(response){
+        fetch('http://localhost:3001/image',{
+          method:'put',
+          headers:{'Content-Type': 'application/json'},
+          body:JSON.stringify({
+          id:this.state.user.id,
+        })
+        })
+    } 
+    this.displayFaceBox(this.calculateFaceLocation(response))
+  })
+  .catch(err =>console.log(err));
+}
+
   onRouteChange=(route)=>{
     this.setState({route:route})
   }
@@ -112,7 +125,7 @@ class App extends Component {
           ?  <div>
               <Navigation onRouteChange={this.onRouteChange} />
               <Logo/>
-              <Rank  name={this.state.user.name}  entries={this.state.user.entries} />
+              <Rank  name={this.state.data.name}  entries={this.state.data.entries} />
               <ImageLinkForm  onSubmit={this.onSubmit}  onInputChange={this.onInputChange}  />
               <FaceRecognition box={box} imageUrl={imageUrl}/> 
             </div>
@@ -127,6 +140,7 @@ class App extends Component {
     );
   }
   
+
 }
 
 export default App;
