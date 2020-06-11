@@ -37,14 +37,31 @@ const ParticlesOptions={
 class App extends Component {
   constructor(){
     super();
-   
     this.state={
       input:"",
       imageUrl:"",
       box:{},
       route: 'signIn',
+      user:{
+        email:'',
+        id:'',
+        name:'',
+        entries:0,
+        joined:'',
+      }
     }
   }
+
+  loadUser=(data)=>{
+    this.setState({data: {
+        email:data.email,
+        id:data.id,
+        name:data.name,
+        entries:data.entries,
+        joined:data.joined,
+    }})
+  }
+
   componentDidMount(){
     fetch('http://localhost:3001')
       .then(response=> response.json())
@@ -102,7 +119,7 @@ class App extends Component {
           : (
               route==='signIn'
               ? <SignIn onRouteChange={this.onRouteChange}/>
-              : <Register  onRouteChange={this.onRouteChange}/>
+              : <Register loadUser={this.loadUser}  onRouteChange={this.onRouteChange}/>
             )
             
         }

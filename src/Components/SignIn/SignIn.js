@@ -26,8 +26,9 @@ class SignIn extends React.Component{
             })
         })
             .then(response=> response.json())
-            .then(data =>{
-                if(data==='success'){
+            .then(user =>{
+                if(user.id){
+                    this.props.loadUser(user);
                     this.props.onRouteChange('home');
                 }
             })
@@ -45,16 +46,28 @@ class SignIn extends React.Component{
                             <legend className="f2 fw6 ph0 mh0">Sign In</legend>
                             <div className="mt2">
                                 <label className="db fw6 lh-copy f5" htmlFor="email-address">Email</label>
-                                <input onChange={this.onEmailChange} style={{width:300}} className="pa2 input-reset ba bg-transparent hover-bg-black hover-white" type="email" name="email-address"  id="email-address"/>
+                                <input  onChange={this.onEmailChange} 
+                                        style={{width:300}}
+                                        className="pa2 input-reset ba bg-transparent hover-bg-black hover-white" type="email" 
+                                        name="email-address"  id="email-address"
+                                />
                             </div>
                             <div className="mv3">
                                 <label className="db fw6 lh-copy f5" htmlFor="password">Password</label>
-                                <input onChange={this.onPasswordChange} style={{width:300}}className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white " type="password" name="password"  id="password"/>
+                                <input  onChange={this.onPasswordChange} 
+                                        style={{width:300}}className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white " 
+                                        type="password" name="password"  
+                                        id="password"
+                                />
                             </div>
                             
                         </fieldset>
                         <div className="">
-                        <input onClick={this.onSubmitSignIn} className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" value="Sign in"/>
+                        <input  onClick={this.onSubmitSignIn} 
+                                className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" 
+                                type="submit" 
+                                value="Sign in"
+                        />
                         </div>
                         <div className="lh-copy ">
                             <p className='pt3 p0 '>Don't have an account ?</p>
