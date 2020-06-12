@@ -11,7 +11,6 @@ class imageLinkForm extends React.Component{
     }
 
     updateValue=(event)=>{
-        console.log('called')
         this.setState({
             inputField:event.target.value,
             
@@ -19,7 +18,7 @@ class imageLinkForm extends React.Component{
         this.props.onInputChange(event);
     }
     onDetect=()=>{
-        console.log('detected')
+       
         this.props.onSubmit();
         this.setState({
             canSearch:false,
@@ -27,7 +26,7 @@ class imageLinkForm extends React.Component{
     }
 
     reset=()=>{
-        console.log('worked')
+        
         this.setState({
             inputField:'',
             canSearch:true,
