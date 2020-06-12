@@ -4,11 +4,11 @@ import React from 'react';
 const Rank=({name,entries})=>{
     return(
         <div>
-           <div className="white b f3" >
-               {`${name}, Your current entry count is...`}
+           <div className="gold b f2" >
+               {` Hello ${name} `}
            </div>
-           <div className="white f2" >
-               {entries}
+           <div className="white f3 pb2" >
+               {`Your current entry count is : ${entries}`}
            </div>
            
         </div>
