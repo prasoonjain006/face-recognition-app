@@ -90,6 +90,7 @@ class App extends Component {
   onInputChange=(event)=>{
     this.setState({input:event.target.value})
   }
+ 
   onSubmit=()=>{
     this.setState({imageUrl:this.state.input})
     app.models.predict(Clarifai.FACE_DETECT_MODEL,this.state.input)
@@ -99,10 +100,15 @@ class App extends Component {
           method:'put',
           headers:{'Content-Type': 'application/json'},
           body:JSON.stringify({
-          id:this.state.user.id,
+          id:this.state.data.id,
         })
+        })
+        .then(response =>response.json())
+        .then(count =>{
+          this.setState(Object.assign(this.state.data,{entries:count}))
         })
     } 
+    this.setState(this.onRouteChange('home'));
     this.displayFaceBox(this.calculateFaceLocation(response))
   })
   .catch(err =>console.log(err));
@@ -126,7 +132,7 @@ class App extends Component {
               <Navigation onRouteChange={this.onRouteChange} />
               <Logo/>
               <Rank  name={this.state.data.name}  entries={this.state.data.entries} />
-              <ImageLinkForm  onSubmit={this.onSubmit}  onInputChange={this.onInputChange}  />
+              <ImageLinkForm  searchChange={this.searchChange} onSubmit={this.onSubmit}  onInputChange={this.onInputChange}  />
               <FaceRecognition box={box} imageUrl={imageUrl}/> 
             </div>
           : (
