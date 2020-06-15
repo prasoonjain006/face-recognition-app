@@ -1,4 +1,8 @@
 # Face Recognition app  
+This app will detect a face in a picture.  
+Just copy the link of any picture from the web (You can find many faces [here](http://bitly.ws/8LIJ) )and paste it the detect-face box. 
+
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
