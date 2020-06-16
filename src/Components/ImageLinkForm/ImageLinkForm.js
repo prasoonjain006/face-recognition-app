@@ -12,13 +12,11 @@ class imageLinkForm extends React.Component{
 
     updateValue=(event)=>{
         this.setState({
-            inputField:event.target.value,
-            
+            inputField:event.target.value,  
         })
         this.props.onInputChange(event);
     }
     onDetect=()=>{
-       
         this.props.onSubmit();
         this.setState({
             canSearch:false,
@@ -26,12 +24,12 @@ class imageLinkForm extends React.Component{
     }
 
     reset=()=>{
-        
+        this.props.onReset();
         this.setState({
             inputField:'',
             canSearch:true,
         })
-       
+        
     }
     render(){
     
@@ -55,7 +53,7 @@ class imageLinkForm extends React.Component{
                                 onChange={this.updateValue    }  />
                         
 
-                        {this.state.canSearch===true
+                        {this.state.canSearch===true && this.state.inputField!==''
                         ?   (
                             <button className="w-30 br3 b grow link dib gold bg-dark-red"
                                     onClick={this.onDetect} >Detect</button>

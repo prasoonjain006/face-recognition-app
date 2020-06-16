@@ -82,7 +82,6 @@ class App extends Component {
       rightCol: width-(claFace.right_col * width),
       bottomRow:height-(claFace.bottom_row*height),
     }
-
   }
   displayFaceBox =(box)=>{
     console.log(box);
@@ -91,6 +90,13 @@ class App extends Component {
   onInputChange=(event)=>{
     this.setState({input:event.target.value})
   }
+
+  onReset=()=>{
+    this.setState({
+      input:'',
+      imageurl:'',
+    })
+  }  
  
   onSubmit=()=>{
     this.setState({imageUrl:this.state.input})
@@ -144,7 +150,7 @@ class App extends Component {
               <Navigation onRouteChange={this.onRouteChange} />
               <Logo/>
               <Rank  name={this.state.data.name}  entries={this.state.data.entries} />
-              <ImageLinkForm  searchChange={this.searchChange} onSubmit={this.onSubmit}  onInputChange={this.onInputChange}  />
+              <ImageLinkForm  onReset={this.onReset} searchChange={this.searchChange} onSubmit={this.onSubmit}  onInputChange={this.onInputChange}  />
               <FaceRecognition box={box} imageUrl={imageUrl}/> 
             </div>
           : (
