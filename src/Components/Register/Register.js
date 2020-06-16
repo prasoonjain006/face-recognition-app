@@ -1,5 +1,7 @@
 import React from 'react';
+import validator from 'validator';
 
+// validator.isEmail("dddd@gmil.ggg")?console.log("valid"):console.log("invalid");
 
 class Register extends React.Component {
     constructor(props){
@@ -8,6 +10,7 @@ class Register extends React.Component {
             email:'',
             password:'',
             name:'',
+            isEmailValid:true,
         }
     }
     onNameChange= (event)=>{
@@ -15,29 +18,40 @@ class Register extends React.Component {
     }
     onEmailChange =(event)=>{
         this.setState({email:event.target.value});
+        if(validator.isEmail(this.state.email)){
+            console.log("Working correct")
+        }else{
+            console.log("try again");
+        }
     }
+
+
+
     onPasswordChange =(event)=>{
         this.setState({password:event.target.value});
     }
 
     onSubmitSignIn=()=>{
-        fetch('http://localhost:3001/register', {
-            method:'post',
-            headers:{'Content-Type': 'application/json'},
-            body:JSON.stringify({
-                email:this.state.email,
-                password:this.state.password,
-                name:this.state.name,
+        if(this.state.isEmailValid){
+            fetch('http://localhost:3001/register', {
+                method:'post',
+                headers:{'Content-Type': 'application/json'},
+                body:JSON.stringify({
+                    email:this.state.email,
+                    password:this.state.password,
+                    name:this.state.name,
+                })
             })
-        })
-            .then(response=> response.json())
-            .then(user =>{
-                if(user){
-                    this.props.loadUser(user);
-                    this.props.onRouteChange('home');
-                }
-            })
-       
+                .then(response=> response.json())
+                .then(user =>{
+                    if(user){
+                        this.props.loadUser(user);
+                        this.props.onRouteChange('home');
+                    }
+                })
+        }else{
+            console.log("lll");
+        }
     }
 
     render(){
@@ -65,6 +79,7 @@ class Register extends React.Component {
                                         className="pa2 input-reset ba bg-transparent hover-bg-black hover-white" 
                                         type="email" name="email-address"  
                                         id="email-address"
+                                        required={true}
                                 />
                             </div>
                             <div className="mv3">
@@ -85,11 +100,14 @@ class Register extends React.Component {
                                 value="Register"
                             />
                         </div>
-                        <div className="lh-copy ">
-                            <p className='pb1 mb1'>Already have an account ?</p>
-                            <p onClick={()=>onRouteChange('signIn')}  href="#0" className="f5 pointer pt1 mt1 b link dim black db">Sign in</p>
-                            
-                        </div>
+                        {/* {this.state.isValid */}
+                            <div className="lh-copy ">
+                                <p className='pb1 mb1'>Already have an account ?</p>
+                                <p onClick={()=>onRouteChange('signIn')}  href="#0" className="f5 pointer pt1 mt1 b link dim black db">Sign in</p>
+                            </div>
+                        {/* :<p></p>
+                        } */}
+                        
                         
                     </div>
                 </main>

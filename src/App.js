@@ -33,23 +33,26 @@ const ParticlesOptions={
     }
   }
 }
-// cf9d81ddd7344f4797e16fdca400dbcb
+
+const initialState={
+input:"",
+  imageUrl:"",
+  box:{},
+  route: 'signIn',
+  user:{
+    email:'',
+    id:'',
+    name:'',
+    entries:0,
+    joined:'',
+  }
+}
 class App extends Component {
   constructor(){
     super();
-    this.state={
-      input:"",
-      imageUrl:"",
-      box:{},
-      route: 'signIn',
-      user:{
-        email:'',
-        id:'',
-        name:'',
-        entries:0,
-        joined:'',
-      }
-    }
+    this.state=initialState;
+      
+    
   }
 
   loadUser=(data)=>{
@@ -63,11 +66,11 @@ class App extends Component {
     }})
   }
 
-  componentDidMount(){
-    fetch('http://localhost:3001')
-      .then(response=> response.json())
-        .then(console.log)
-  }
+  // componentDidMount(){
+  //   fetch('http://localhost:3001')
+  //     .then(response=> response.json())
+  //       .then(console.log)
+  // }
   
   calculateFaceLocation =(data)=>{
     const claFace = data.outputs[0].data.regions[0].region_info.bounding_box;
@@ -107,6 +110,7 @@ class App extends Component {
         .then(count =>{
           this.setState(Object.assign(this.state.data,{entries:count}))
         })
+        .catch(console.log);
     } 
     this.setState(this.onRouteChange('home'));
     this.displayFaceBox(this.calculateFaceLocation(response))
@@ -115,6 +119,9 @@ class App extends Component {
 }
 
   onRouteChange=(route)=>{
+    if(route==='signIn'){
+      this.setState(initialState);
+    }
     this.setState({route:route})
   }
   
