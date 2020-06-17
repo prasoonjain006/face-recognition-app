@@ -1,9 +1,8 @@
-# Face Recognition app  
+# Face Recognition app
+
 This app will detect a face in the picture.  
-Just copy the address of any picture from the web ( you can find many faces [here](http://bitly.ws/8LIJ)) and paste it the detect-face box. 
-   
-         
-         
+Just copy the address of any picture from the web ( you can find many faces [here](http://bitly.ws/8LIJ)) and paste it the detect-face box.  
+![sample-image](https://github.com/[prasoonjain006]/[face-recognition]/blob/[public]/image1.png?raw=true)
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -43,8 +42,6 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-
-
 ### Making a Progressive Web App
 
 This section has moved here: <https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app>
@@ -56,5 +53,3 @@ This section has moved here: <https://facebook.github.io/create-react-app/docs/a
 ### Deployment
 
 This section has moved here: <https://facebook.github.io/create-react-app/docs/deployment>
-
-
