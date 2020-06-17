@@ -4,7 +4,7 @@
 
 <li>This app will detect a face in the picture.</li>  
 <li>Just copy the address of any picture from the web.</li>
-<li>( you can find many faces [here](http://bitly.ws/8LIJ)) and paste it the detect-face box. </li>
+<li> you can find many faces [here](http://bitly.ws/8LIJ) and paste it the detect-face box. </li>
 </ul>
 
 ![sample-image](public/image1.png )
