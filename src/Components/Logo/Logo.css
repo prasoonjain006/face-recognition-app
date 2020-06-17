@@ -1,5 +1,15 @@
 .Tilt{
     /* background: linear-gradient(to right,rgb(8, 8, 131),rgb(221, 9, 168)); */
     background-color: rgb(231, 231, 12);
+    display: inline-block;
 
 }
+.container{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.profile{
+    background: linear-gradient(to bottom, rgba(253, 8, 29, 0.753),rgba(6, 245, 6, 0.651) );
+}
+

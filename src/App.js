@@ -10,9 +10,6 @@ import Rank from './Components/Rank/Rank';
 import Particles from 'react-particles-js';
 
 
-
-
-
 const ParticlesOptions={
   Particles: {
     "number": {
@@ -50,12 +47,9 @@ class App extends Component {
   constructor(){
     super();
     this.state=initialState;
-      
-    
   }
 
   loadUser=(data)=>{
-    // console.log(data);
     this.setState({data: {
         email:data.email,
         id:data.id,
@@ -64,15 +58,10 @@ class App extends Component {
         joined:data.joined,
     }})
   }
-
-  // componentDidMount(){
-  //   fetch('http://localhost:3001')
-  //     .then(response=> response.json())
-  //       .then(console.log)
-  // }
   
   calculateFaceLocation =(data)=>{
-    const claFace = data.outputs[0].data.regions[0].region_info.bounding_box;
+    const claFace = data.outputs[0].data.regions[1].region_info.bounding_box;
+    console.log(data.outputs[0].data.regions[0].region_info.bounding_box)
     const image = document.getElementById('inputImage');
     const width =Number(image.width);
     const height=Number(image.height);
@@ -152,7 +141,11 @@ class App extends Component {
         {route === 'home'
           ?  <div>
               <Navigation onRouteChange={this.onRouteChange} />
-              <Logo/>
+              <Logo   name={this.state.data.name}
+                      email={this.state.data.email}
+                      entries={this.state.data.entries}
+                      joined={this.state.data.joined}
+                      id={this.state.data.id} />
               <Rank  name={this.state.data.name} 
                      entries={this.state.data.entries} />
               <ImageLinkForm badReq={this.state.badReq}

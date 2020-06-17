@@ -82,7 +82,7 @@ class imageLinkForm extends React.Component{
                             {this.state.needHelp===true
                             ?    <div className='f4'>
                                     <p>Copy the address of any image that contains a face.</p>
-                                    <p >You can find such images </p> <a  target='blank' className='m0 pa0 gold f3'  href="http://bitly.ws/8LIJ">Here</a>
+                                    <p >You can find such images </p> <a  target='blank' className='m0 pa0 gold f3'  href="https://www.bing.com/images/search?q=faces&qs=n&form=QBIR&sp=-1&pq=face&sc=8-4&sk=&cvid=7C93655C602042A79E4FE9654366E723">Here</a>
                                     <p>Paste that link in the above box and click on detect</p>
                                 </div>
                             :<p></p>

@@ -55,9 +55,9 @@ class SignIn extends React.Component{
                 <main className="pa2 pr4 pl4 black-80 mt3 ml3 mr3 ">
                     <div className="measure ">
                         <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
-                            <legend className="f2 fw6 ph0 mh0">Sign In</legend>
+                            <legend className="f2 fw6 gold shadow-5 ph0 mh0">Sign In</legend>
                             <div className="mt2">
-                                <label className="db fw6 lh-copy f5" htmlFor="email-address">Email</label>
+                                <label className="db fw6 b lh-copy f5" htmlFor="email-address">Email</label>
                                 <input  onChange={this.onEmailChange} 
                                         style={{width:300}}
                                         className="pa2 input-reset ba bg-transparent hover-bg-black hover-white" type="email" 
@@ -65,7 +65,7 @@ class SignIn extends React.Component{
                                 />
                             </div>
                             <div className="mv3">
-                                <label className="db fw6 lh-copy f5" htmlFor="password">Password</label>
+                                <label className="db fw6 lh-copy b f5" htmlFor="password">Password</label>
                                 <input  onChange={this.onPasswordChange} 
                                         style={{width:300}}className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white " 
                                         type="password" name="password"  
@@ -87,8 +87,8 @@ class SignIn extends React.Component{
                         />
                         </div>
                         <div className="lh-copy ">
-                            <p className='pt3 p0 '>Don't have an account ?</p>
-                            <p onClick={()=>onRouteChange('register')}  href="#0" className="f5 pointer link b pt0 dim black db">Register</p>
+                            <p className='pt3 p0 b'>Don't have an account ?</p>
+                            <p onClick={()=>onRouteChange('register')}  href="#0" className="f4 pointer link b pt0 dim black db">Register Here</p>
                             
                         </div>
                     </div>

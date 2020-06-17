@@ -1,8 +1,6 @@
 import React from 'react';
 import validator from 'validator';
 
-// validator.isEmail("dddd@gmil.ggg")?console.log("valid"):console.log("invalid");
-
 class Register extends React.Component {
     constructor(props){
         super(props);
@@ -20,7 +18,6 @@ class Register extends React.Component {
         this.setState({name:event.target.value});
     }
     onEmailChange =(event)=>{  
-        // this.setState({email:event.target.value});
         if(validator.isEmail(this.state.email)){
             console.log("Working correct")
             this.setState({
@@ -34,7 +31,6 @@ class Register extends React.Component {
         }
         this.setState({email:event.target.value});
     }
-
     onPasswordChange =(event)=>{
         this.setState({password:event.target.value});
         this.state.password.length>=5
@@ -83,9 +79,9 @@ class Register extends React.Component {
                 <main className="pa2 pr4 pl4 black-80 mt3 ml3 mr3 ">
                     <div className="measure ">
                         <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
-                            <legend className="f2 fw6 ph0 mh0">Register</legend>
+                            <legend className="f2 gold shadow-5 fw6 ph0 mh0">Register</legend>
                             <div className="mt2">
-                                <label className="db fw6 lh-copy f5" htmlFor="name">Name</label>
+                                <label className="db fw6 b lh-copy f5" htmlFor="name">Name</label>
                                 <input  style={{width:300}} 
                                         onChange={this.onNameChange}
                                         className="pa2 input-reset ba bg-transparent hover-bg-black hover-white" 
@@ -99,7 +95,7 @@ class Register extends React.Component {
                             }
 
                             <div className="mt2">
-                                <label className="db fw6 lh-copy f5" htmlFor="email-address">Email</label>
+                                <label className="db fw6 b lh-copy f5" htmlFor="email-address">Email</label>
                                 <input  style={{width:300}} 
                                         onChange={this.onEmailChange}
                                         className="pa2 input-reset ba bg-transparent hover-bg-black hover-white" 
@@ -115,7 +111,7 @@ class Register extends React.Component {
                             }
 
                             <div className="mv3">
-                                <label className="db fw6 lh-copy f5" htmlFor="password">Password</label>
+                                <label className="db b fw6 lh-copy f5" htmlFor="password">Password</label>
                                 <input  style={{width:300} }
                                         onChange={this.onPasswordChange}
                                         className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white " 
@@ -127,7 +123,6 @@ class Register extends React.Component {
                                 ?   <p className='b green ' >Minimum password length should be 6</p>
                                 :<p></p>
                             }
-                            
                         </fieldset>
                         <div className="">
                         <input  onClick={this.onSubmitSignIn}
@@ -136,21 +131,14 @@ class Register extends React.Component {
                                 value="Register"
                             />
                         </div>
-
                         {this.state.sameID===true 
-                                ?   <p className='b green ' >Already Registered, Kindly SignIn or register with different email-ID</p>
-                                :<p></p>
-                            }
-
-                        {/* {this.state.isValid */}
+                            ?   <p className='b green ' >Already Registered, Kindly SignIn or register with different email-ID</p>
+                            :<p></p>
+                        }
                             <div className="lh-copy ">
-                                <p className='pb1 mb1'>Already have an account ?</p>
-                                <p onClick={()=>onRouteChange('signIn')}  href="#0" className="f5 pointer pt1 mt1 b link dim black db">Sign in</p>
+                                <p className='pb1 b mb1'>Already have an account ?</p>
+                                <p onClick={()=>onRouteChange('signIn')}  href="#0" className="f4 pointer pt1 mt1 b link dim black db">Sign-In Here</p>
                             </div>
-                        {/* :<p></p>
-                        } */}
-                        
-                        
                     </div>
                 </main>
             </article>
