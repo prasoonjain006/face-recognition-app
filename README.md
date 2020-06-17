@@ -2,7 +2,7 @@
 
 This app will detect a face in the picture.  
 Just copy the address of any picture from the web ( you can find many faces [here](http://bitly.ws/8LIJ)) and paste it the detect-face box.  
-![sample-image](public/image1.png ){: heigth="80%" width="60%" }
+![sample-image](public/image1.png ){: height="80%" width="70%" }
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
