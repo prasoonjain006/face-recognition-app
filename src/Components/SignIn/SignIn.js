@@ -6,15 +6,25 @@ class SignIn extends React.Component{
         super(props);
         this.state={
             signInEmail:'',
-            signInPassword:''
+            signInPassword:'',
+            showSignInWarning:false,
         }
     }
 
     onEmailChange =(event)=>{
-        this.setState({signInEmail:event.target.value});
+        this.setState({
+            signInEmail:event.target.value,
+            showSignInWarning:false,
+        });
+        
     }
     onPasswordChange =(event)=>{
-        this.setState({signInPassword:event.target.value});
+        this.setState({
+            signInPassword:event.target.value,
+            showSignInWarning:false,
+
+        });
+        
     }
     onSubmitSignIn=()=>{
         fetch('http://localhost:3001/signIn', {
@@ -24,13 +34,14 @@ class SignIn extends React.Component{
                 email:this.state.signInEmail,
                 password:this.state.signInPassword,
             })
-        })
+        }).catch(err =>console.log("error sign in wrong user"))
             .then(response=> response.json())
             .then(user =>{
                 if(user.id){
                     this.props.loadUser(user);
-                    // console.log(user);
                     this.props.onRouteChange('home');
+                }else{
+                    this.setState({showSignInWarning:true})
                 }
             })
        
@@ -63,7 +74,12 @@ class SignIn extends React.Component{
                             </div>
                             
                         </fieldset>
-                        <div className="">
+
+                        <div className="mt0">
+                        {this.state.showSignInWarning===true
+                            ? <p className='b red fw7 dib mt0 pt0' >Email or password is incorrect</p>
+                            :<p></p>
+                        }
                         <input  onClick={this.onSubmitSignIn} 
                                 className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" 
                                 type="submit" 
