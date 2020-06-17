@@ -37,6 +37,7 @@ input:"",
   imageUrl:"",
   box:{},
   route: 'signIn',
+  badReq:false,
   user:{
     email:'',
     id:'',
@@ -106,7 +107,7 @@ class App extends Component {
       body:JSON.stringify({
         input:this.state.input,
       })
-    })
+    }).then(resp=> resp.status===400? this.setState({badReq:true}): resp)
     .then(response=>response.json())
     .then(response =>{
       if(response){
@@ -126,7 +127,7 @@ class App extends Component {
     this.setState(this.onRouteChange('home'));
     this.displayFaceBox(this.calculateFaceLocation(response))
   })
-  .catch(err =>console.log(err));
+  .catch(err =>console.log('wrong address'));
 }
 
   onRouteChange=(route)=>{
@@ -134,6 +135,9 @@ class App extends Component {
       this.setState(initialState);
     }
     this.setState({route:route})
+  }
+  changeReq=()=>{
+    this.setState({badReq:false})
   }
   
 
@@ -149,8 +153,14 @@ class App extends Component {
           ?  <div>
               <Navigation onRouteChange={this.onRouteChange} />
               <Logo/>
-              <Rank  name={this.state.data.name}  entries={this.state.data.entries} />
-              <ImageLinkForm  onReset={this.onReset} searchChange={this.searchChange} onSubmit={this.onSubmit}  onInputChange={this.onInputChange}  />
+              <Rank  name={this.state.data.name} 
+                     entries={this.state.data.entries} />
+              <ImageLinkForm badReq={this.state.badReq}
+                             changeReq={this.changeReq}
+                             onReset={this.onReset} 
+                             searchChange={this.searchChange} 
+                             onSubmit={this.onSubmit}  
+                             onInputChange={this.onInputChange}  />
               <FaceRecognition box={box} imageUrl={imageUrl}/> 
             </div>
           : (

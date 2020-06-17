@@ -10,45 +10,69 @@ class Register extends React.Component {
             email:'',
             password:'',
             name:'',
-            isEmailValid:true,
+            isEmailValid:false,
+            showEmailWarning:false,
+            showPasswordWarnings:true,
+            sameID:false,
         }
     }
     onNameChange= (event)=>{
         this.setState({name:event.target.value});
     }
-    onEmailChange =(event)=>{
-        this.setState({email:event.target.value});
+    onEmailChange =(event)=>{  
+        // this.setState({email:event.target.value});
         if(validator.isEmail(this.state.email)){
             console.log("Working correct")
+            this.setState({
+                isEmailValid:true,
+                showEmailWarning:false,
+                showNameWarning:false,
+            })  
         }else{
             console.log("try again");
+            this.setState({isEmailValid:false})  
         }
+        this.setState({email:event.target.value});
     }
 
     onPasswordChange =(event)=>{
         this.setState({password:event.target.value});
+        this.state.password.length>=5
+        ?   this.setState({showPasswordWarnings:false})
+        :   this.setState({showPasswordWarnings:true})
+
     }
 
     onSubmitSignIn=()=>{
         if(this.state.isEmailValid){
-            fetch('http://localhost:3001/register', {
-                method:'post',
-                headers:{'Content-Type': 'application/json'},
-                body:JSON.stringify({
-                    email:this.state.email,
-                    password:this.state.password,
-                    name:this.state.name,
-                })
-            })
-                .then(response=> response.json())
-                .then(user =>{
-                    if(user){
-                        this.props.loadUser(user);
-                        this.props.onRouteChange('home');
-                    }
-                })
+            this.setState({showEmailWarning:false})
+            if(this.state.showPasswordWarnings){
+                return;
+            }else{
+                if(this.state.name){
+                    fetch('http://localhost:3001/register', {
+                        method:'post',
+                        headers:{'Content-Type': 'application/json'},
+                        body:JSON.stringify({
+                            email:this.state.email,
+                            password:this.state.password,
+                            name:this.state.name,
+                        })
+                    })
+                    .then(resp => resp.status===400 ? this.setState({sameID:true}) : resp)
+                    .then(response=> response.json()).catch(err=>console.log('same credentials'))
+                    .then(user =>{
+                        if(user){
+                            this.props.loadUser(user);
+                            this.props.onRouteChange('home');
+                        }
+                    })
+                }else{
+                    this.setState({showNameWarning:true})
+                }
+            }
         }else{
-            console.log("lll");
+            this.setState({showEmailWarning:true})
         }
     }
 
@@ -69,6 +93,10 @@ class Register extends React.Component {
                                         id="name"
                                 />
                             </div>
+                            {this.state.showNameWarning===true 
+                                ?   <p className='b green ' >Enter Your name</p>
+                                :<p></p>
+                            }
 
                             <div className="mt2">
                                 <label className="db fw6 lh-copy f5" htmlFor="email-address">Email</label>
@@ -78,8 +106,14 @@ class Register extends React.Component {
                                         type="email" name="email-address"  
                                         id="email-address"
                                         required={true}
+                                        autoComplete="off"
                                 />
                             </div>
+                            {this.state.showEmailWarning===true 
+                                ?   <p className='b green ' >Please Enter Email Correctly</p>
+                                :<p></p>
+                            }
+
                             <div className="mv3">
                                 <label className="db fw6 lh-copy f5" htmlFor="password">Password</label>
                                 <input  style={{width:300} }
@@ -89,6 +123,10 @@ class Register extends React.Component {
                                         id="password"
                                 />
                             </div>
+                            {this.state.showPasswordWarnings===true 
+                                ?   <p className='b green ' >Minimum password length should be 6</p>
+                                :<p></p>
+                            }
                             
                         </fieldset>
                         <div className="">
@@ -98,6 +136,12 @@ class Register extends React.Component {
                                 value="Register"
                             />
                         </div>
+
+                        {this.state.sameID===true 
+                                ?   <p className='b green ' >Already Registered, Kindly SignIn or register with different email-ID</p>
+                                :<p></p>
+                            }
+
                         {/* {this.state.isValid */}
                             <div className="lh-copy ">
                                 <p className='pb1 mb1'>Already have an account ?</p>
