@@ -7,8 +7,10 @@ class imageLinkForm extends React.Component{
         this.state={
             inputField:'',
             canSearch:true,
+            needHelp:false,
         }
     }
+    helpNeed=()=>this.setState({needHelp:true});
 
     updateValue=(event)=>{
         this.setState({
@@ -25,9 +27,12 @@ class imageLinkForm extends React.Component{
 
     reset=()=>{
         this.props.onReset();
+        this.props.changeReq();
+        
         this.setState({
             inputField:'',
             canSearch:true,
+            needHelp:false,
         })
         
     }
@@ -40,15 +45,17 @@ class imageLinkForm extends React.Component{
                 </p>
                 {this.state.canSearch===true
                 ?   <div className='white'>
-                    copy and paste the image link here
+                    Copy the address of any picture and paste it here
+                    
                     </div>
+
                 :<p></p>
                 }
                 
                 <div className ='center'>
-               
+                
                     <div className=" shadow-5 pa1 br3 w-90 form center">
-                        
+                    {/* <button onClick={this.helpNeed} className='bg-dark-red white b shadow-5 pa2 link dib pr3 pl3 br3' >Need Help</button> */}
                         <input  className="f4 br3 w-60 center blue" type='text' value={this.state.inputField}
                                 onChange={this.updateValue    }  />
                         
@@ -61,15 +68,30 @@ class imageLinkForm extends React.Component{
                         :<p></p>
                         }
 
-                        
-
-                        {/* <button className='pa1 br3 dib gold' onClick={this.reset}>again</button> */}
                     </div>
                     {this.state.canSearch===false
                     ?   <button className='pa1 br3 bg-purple dib gold' onClick={this.reset}>Search again</button>
                     :<p></p>
                     }
+  
                 </div>
+                {this.props.badReq===true
+                    ?   <div className='white'>
+                            <p className='gold f3 shadow-5 b'  >Ooops, you might entered a wrong link, please try again </p>
+                            <button onClick={this.helpNeed} className='bg-dark-red white b shadow-5 pa2 link dib pr3 pl3 br3' >Need Help</button>
+                            {this.state.needHelp===true
+                            ?    <div className='f4'>
+                                    <p>Copy the address of any image that contains a face.</p>
+                                    <p >You can find such images </p> <a  target='blank' className='m0 pa0 gold f3'  href="http://bitly.ws/8LIJ">Here</a>
+                                    <p>Paste that link in the above box and click on detect</p>
+                                </div>
+                            :<p></p>
+                            }
+
+                        </div>
+                    :<p></p>
+                }
+                
 
 
             </div>
