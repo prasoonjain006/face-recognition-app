@@ -13,13 +13,13 @@ You can find many pictures of faces [here](https://www.bing.com/images/search?q=
     <li>      This is the home page of the app</li>
 </ul>
 
-![sample-image](public/image3.png )
+![sample-image](public/image1.png )
 
 <ul>
     <li>    If You entered wrong address.  </li>
 </ul>
 
-![sample-image](public/image4.png )
+![sample-image](public/image2.png )
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
