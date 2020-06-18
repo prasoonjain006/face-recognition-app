@@ -10,7 +10,11 @@ class Profile extends React.Component{
             showProfile:false,
         }
     }
+
+    /** When show profile button is clicked */
     onViewProfile=()=> this.setState({showProfile:true})
+
+    //** When Back button is clicked */
     onBackProfile=()=>this.setState({showProfile:false})
     
 
@@ -18,7 +22,7 @@ class Profile extends React.Component{
         const {name, email, entries, joined,id}=this.props;
         return(
             <div>
-                
+                {/** Buttons for show profile and back from profile*/}
                 <div className='tl ma2' >
                 {this.state.showProfile===false
                     ?   <button onClick={this.onViewProfile} className='bg-dark-red white ma2  b shadow-5 pa1 link dib pr3 pl3 br3'>View Profile</button>
@@ -26,13 +30,14 @@ class Profile extends React.Component{
                 }
                 </div>
 
+                {/** Container for logo and profile box*/}
                 <span className="mt3  container ">
                     <Tilt className="Tilt br2 shadow-2" options={{ max : 35 ,scale:1.2}} style={{ height: 118, width: 120 }} >
                         <span className="Tilt-inner">
                             <img className="pa2"  src={logo1} style={{ height: 100, width: 100 }} alt='logo'/>
                         </span>
                     </Tilt>
-                    {this.state.showProfile===true
+                    {this.state.showProfile===true              /** If profile button is clicked, display profile boxes */
                         ? <>
                             <span className='profile f4 white shadow-3 pa2 ma2  b br3 tl'>
                                 <p> id : {id} </p>
@@ -47,7 +52,6 @@ class Profile extends React.Component{
                         :<p></p>
                     }
                 </span>
-                
             </div>
         )
     }

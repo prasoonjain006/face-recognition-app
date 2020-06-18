@@ -160,7 +160,7 @@ class App extends Component {
         />
         {route === 'home'           /**If route is main page of the app i.e if user is signed-in */
           ?  <div>
-              <Navigation onRouteChange={this.onRouteChange} />
+              <Navigation onRouteChange={this.onRouteChange} />       
               <Profile  name={this.state.data.name}
                         email={this.state.data.email}
                         entries={this.state.data.entries}

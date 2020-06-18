@@ -3,19 +3,23 @@
 <ul>  
 <li>This app will detect a face in the picture.</li>  
 
-<li>Just copy the address of any picture from the web.</li>  
+<li>Just copy the address of any picture from the web and paste it the detect-face box..</li>  
 
 </ul>  
 
-You can find many faces [here](https://www.bing.com/images/search?q=faces&qs=n&form=QBIR&sp=-1&pq=face&sc=8-4&sk=&cvid=7C93655C602042A79E4FE9654366E723) and paste it the detect-face box.  
+You can find many pictures of faces [here](https://www.bing.com/images/search?q=faces&qs=n&form=QBIR&sp=-1&pq=face&sc=8-4&sk=&cvid=7C93655C602042A79E4FE9654366E723).  
 
-![sample-image](public/image1.png )
+<ul>
+    <li>      This is the home page of the app</li>
+</ul>
+
+![sample-image](public/image3.png )
 
 <ul>
     <li>    If You entered wrong address.  </li>
 </ul>
 
-![sample-image](public/image2.png )
+![sample-image](public/image4.png )
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
