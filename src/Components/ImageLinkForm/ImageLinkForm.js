@@ -28,7 +28,6 @@ class imageLinkForm extends React.Component{
     reset=()=>{
         this.props.onReset();
         this.props.changeReq();
-        
         this.setState({
             inputField:'',
             canSearch:true,
@@ -51,9 +50,7 @@ class imageLinkForm extends React.Component{
 
                 :<p></p>
                 }
-                
                 <div className ='center'>
-                
                     <div className=" shadow-5 pa1 br3 w-90 form center">
                     {/* <button onClick={this.helpNeed} className='bg-dark-red white b shadow-5 pa2 link dib pr3 pl3 br3' >Need Help</button> */}
                         <input  className="f4 br3 w-60 center blue" type='text' value={this.state.inputField}

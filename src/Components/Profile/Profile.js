@@ -1,9 +1,9 @@
 import React from 'react';
 import Tilt from 'react-tilt';
-import './Logo.css';
+import './Profile.css';
 import logo1 from './logo3.jfif';
 
-class Logo extends React.Component{
+class Profile extends React.Component{
     constructor(props){
         super(props);
         this.state={
@@ -52,4 +52,4 @@ class Logo extends React.Component{
         )
     }
 }
-export default Logo;
+export default Profile;
