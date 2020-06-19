@@ -67,7 +67,7 @@ class Register extends React.Component {
                 return;
             }else{
                 if(this.state.name){                            /** If name field is NOT empty */
-                    fetch('http://localhost:3001/register', {
+                    fetch('https://gentle-hollows-93077.herokuapp.com/register', {
                         method:'post',
                         headers:{'Content-Type': 'application/json'},
                         body:JSON.stringify({
